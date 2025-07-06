@@ -12,7 +12,9 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx scripts/init-db.ts",
     "setup": "chmod +x scripts/setup.sh && ./scripts/setup.sh",
-    "deploy:vercel": "vercel --prod"
+    "deploy:vercel": "vercel --prod",
+    "db:migrate": "prisma migrate dev",
+    "db:reset": "prisma migrate reset"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
