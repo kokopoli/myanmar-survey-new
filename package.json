@@ -14,7 +14,8 @@
     "setup": "chmod +x scripts/setup.sh && ./scripts/setup.sh",
     "deploy:vercel": "vercel --prod",
     "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset"
+    "db:reset": "prisma migrate reset",
+    "export": "next export"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
