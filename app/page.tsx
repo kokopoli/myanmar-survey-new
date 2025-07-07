@@ -205,51 +205,62 @@ export default function MyanmarSurvey() {
               <h3 className="text-lg font-semibold text-amber-700">အပိုင်း ၁: အခြေခံအချက်အလက်</h3>
 
               <div>
-                <Label className="text-base font-medium">
+                <label className="text-base font-medium">
                   ၁။ သင့်အသက်အပိုင်းအခြား: <span className="text-red-500">*</span>
-                </Label>
-                <RadioGroup
-                  value={formData.age}
-                  onValueChange={(value) => updateFormData("age", value)}
-                  className="mt-2"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="18-30" id="age1" />
-                    <Label htmlFor="age1">၁၈-၃၀ နှစ်</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="31-45" id="age2" />
-                    <Label htmlFor="age2">၃၁-၄၅ နှစ်</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="46-60" id="age3" />
-                    <Label htmlFor="age3">၄၆-၆၀ နှစ်</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="60+" id="age4" />
-                    <Label htmlFor="age4">၆၀ နှစ်အထက်</Label>
-                  </div>
-                </RadioGroup>
+                </label>
+                <div className="mt-2 space-y-2">
+                  {[
+                    { value: "18-30", label: "၁၈-၃၀ နှစ်", id: "age1" },
+                    { value: "31-45", label: "၃၁-၄၅ နှစ်", id: "age2" },
+                    { value: "46-60", label: "၄၆-၆၀ နှစ်", id: "age3" },
+                    { value: "60+", label: "၆၀ နှစ်အထက်", id: "age4" },
+                  ].map((item) => (
+                    <div key={item.id} className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        id={item.id}
+                        name="age"
+                        value={item.value}
+                        checked={formData.age === item.value}
+                        onChange={() => updateFormData("age", item.value)}
+                        className="form-radio"
+                      />
+                      <label htmlFor={item.id}>{item.label}</label>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div>
-                <Label className="text-base font-medium">
+                <label className="text-base font-medium">
                   ၂။ သင့်နေထိုင်ရာဒေသ: <span className="text-red-500">*</span>
-                </Label>
-                <RadioGroup
-                  value={formData.location}
-                  onValueChange={(value) => updateFormData("location", value)}
-                  className="mt-2"
-                >
+                </label>
+                <div className="mt-2 space-y-2">
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="urban" id="urban" />
-                    <Label htmlFor="urban">မြို့ပြ</Label>
+                    <input
+                      type="radio"
+                      id="urban"
+                      name="location"
+                      value="urban"
+                      checked={formData.location === "urban"}
+                      onChange={() => updateFormData("location", "urban")}
+                      className="form-radio"
+                    />
+                    <label htmlFor="urban">မြို့ပြ</label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="rural" id="rural" />
-                    <Label htmlFor="rural">ကျေးလက်</Label>
+                    <input
+                      type="radio"
+                      id="rural"
+                      name="location"
+                      value="rural"
+                      checked={formData.location === "rural"}
+                      onChange={() => updateFormData("location", "rural")}
+                      className="form-radio"
+                    />
+                    <label htmlFor="rural">ကျေးလက်</label>
                   </div>
-                </RadioGroup>
+                </div>
                 {formData.location === "urban" && (
                   <Input
                     placeholder="မြို့အမည်ဖော်ပြရန် *"
@@ -261,35 +272,31 @@ export default function MyanmarSurvey() {
               </div>
 
               <div>
-                <Label className="text-base font-medium">
+                <label className="text-base font-medium">
                   ၃။ သင့်အလုပ်အကိုင်: <span className="text-red-500">*</span>
-                </Label>
-                <RadioGroup
-                  value={formData.occupation}
-                  onValueChange={(value) => updateFormData("occupation", value)}
-                  className="mt-2"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="student" id="student" />
-                    <Label htmlFor="student">ကျောင်းသား/သူ</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="farmer" id="farmer" />
-                    <Label htmlFor="farmer">တောင်သူလယ်သမား</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="business" id="business" />
-                    <Label htmlFor="business">စီးပွားရေးလုပ်ငန်းရှင်</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="government" id="government" />
-                    <Label htmlFor="government">အစိုးရဝန်ထမ်း</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="other" id="other-occupation" />
-                    <Label htmlFor="other-occupation">အခြား</Label>
-                  </div>
-                </RadioGroup>
+                </label>
+                <div className="mt-2 space-y-2">
+                  {[
+                    { value: "student", label: "ကျောင်းသား/သူ", id: "student" },
+                    { value: "farmer", label: "တောင်သူလယ်သမား", id: "farmer" },
+                    { value: "business", label: "စီးပွားရေးလုပ်ငန်းရှင်", id: "business" },
+                    { value: "government", label: "အစိုးရဝန်ထမ်း", id: "government" },
+                    { value: "other", label: "အခြား", id: "other-occupation" },
+                  ].map((item) => (
+                    <div key={item.id} className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        id={item.id}
+                        name="occupation"
+                        value={item.value}
+                        checked={formData.occupation === item.value}
+                        onChange={() => updateFormData("occupation", item.value)}
+                        className="form-radio"
+                      />
+                      <label htmlFor={item.id}>{item.label}</label>
+                    </div>
+                  ))}
+                </div>
                 {formData.occupation === "other" && (
                   <Input
                     placeholder="ဖော်ပြရန် *"
